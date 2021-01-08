@@ -86,57 +86,85 @@ class finishSignUpVC: UIViewController {
         
             let error = checkUserProfileImage()
             if error == nil{
-                Auth.auth().createUser(withEmail: email!, password: password!) { (result, err) in
-                    // Check for errors
-                    if err != nil {
-                        // There was an error creating the user
-                        self.showError(message: "Error creating user")
-                    }
-                    else {
-                        var imgUrl = ""
-                        guard let imageSelected = self.userProfileImage.image else{
-                            return
-                        }
-                        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else{
-                            return
-                        }
-                        let storageRef = Storage.storage().reference(forURL: "gs://meet-and-learn-1709f.appspot.com")
-                        let storageProfileRef = storageRef.child("profile").child(result!.user.uid)
-                        let metaData = StorageMetadata()
-                        metaData.contentType = "image/jpg"
-                        storageProfileRef.putData(imageData, metadata: metaData, completion: { (storageMetaData, error) in
-                            if error != nil {
-                                print(error?.localizedDescription as Any)
-                            }
-                            
-                            storageProfileRef.downloadURL(completion: { (url, error) in
-                                if let metaImageUrl = url?.absoluteString{
-                                    imgUrl = metaImageUrl
-                                    // User was created successfully, now store the first name and last name
-                                    let db = Firestore.firestore()
-                                    db.collection("Users").document("\(result!.user.uid)").setData(["firstname":self.firstName!, "lastname":self.lastName!, "birthdate": self.birthDate!, "gender": self.gender!, "phone":self.phoneNumber!, "usertype":self.userType!, "email":self.email!, "profileimageurl": imgUrl, "uid": result!.user.uid ]) { (error) in
-                                        
-                                        if error != nil {
-                                            // Show error message
-                                            self.showError(message: "Error saving user data")
-                                        }
-                                        else{
-                                            Style.stylePressedButton(Button: self.finishBtn)
-                                            let successfulySignedUpAlert = UIAlertController(title: "Successfull", message: "your account registered successfully", preferredStyle: .alert)
-                               
-                          successfulySignedUpAlert.addAction(UIAlertAction(title: "Ok", style: .default , handler: self.dissmissSignUpView(alert:)))
-                                            self.present(successfulySignedUpAlert, animated: true, completion: nil)
-                                        }
-                                    }
-                                }
-                            })
-                            
-                        })
-                    }
-                }
+                createUser(email: email!, password: password!)
             }else{
                 showError(message: error!)
         }
+    }
+    
+    func createUser(email: String, password: String){
+        Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+            // Check for errors
+            if err != nil {
+                // There was an error creating the user
+                self.showError(message: "Error creating user")
+            }
+            else {
+                var imgUrl = ""
+                guard let imageSelected = self.userProfileImage.image else{
+                    return
+                }
+                guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else{
+                    return
+                }
+                let storageRef = Storage.storage().reference(forURL: "gs://meet-and-learn-1709f.appspot.com")
+                let storageProfileRef = storageRef.child("profile").child(result!.user.uid)
+                let metaData = StorageMetadata()
+                metaData.contentType = "image/jpg"
+                storageProfileRef.putData(imageData, metadata: metaData, completion: { (storageMetaData, error) in
+                    if error != nil {
+                        print(error?.localizedDescription as Any)
+                    }
+                    
+                    storageProfileRef.downloadURL(completion: { (url, error) in
+                        if let metaImageUrl = url?.absoluteString{
+                            imgUrl = metaImageUrl
+                            // User was created successfully, now store the first name and last name
+                            self.saveUserData(userId: result!.user.uid, firstName: self.firstName!, lastName: self.lastName!, birthDate: self.birthDate!, gender: self.gender!, phoneNumber: self.phoneNumber!, userType: self.userType!, email: self.email!, profileImgUrl: imgUrl)
+                        }
+                    })
+                    
+                })
+            }
+        }
+    }
+    
+    func saveUserData(userId: String, firstName: String, lastName: String, birthDate: String, gender: String, phoneNumber: String, userType: String, email: String, profileImgUrl: String){
+        if userType == "Learner"{
+            let enrolledCourses = [String]()
+            let db = Firestore.firestore()
+            db.collection("Users").document("\(userId)").setData(["firstname":firstName, "lastname":lastName, "birthdate": birthDate, "gender": gender, "phone":phoneNumber, "usertype":userType, "email":email, "profileimageurl": profileImgUrl, "uid": userId, "enrolledCourses": enrolledCourses ]) { (error) in
+                
+                if error != nil {
+                    // Show error message
+                    self.showError(message: "Error saving user data")
+                }
+                else{
+                    self.setupAlert()
+                }
+            }
+        }else{
+            let db = Firestore.firestore()
+            db.collection("Users").document("\(userId)").setData(["firstname":firstName, "lastname":lastName, "birthdate": birthDate, "gender": gender, "phone":phoneNumber, "usertype":userType, "email":email, "profileimageurl": profileImgUrl, "uid": userId ]) { (error) in
+                
+                if error != nil {
+                    // Show error message
+                    self.showError(message: "Error saving user data")
+                }
+                else{
+                    self.setupAlert()
+                }
+            }
+        }
+        
+    }
+    
+    func setupAlert(){
+            Style.stylePressedButton(Button: self.finishBtn)
+            let successfulySignedUpAlert = UIAlertController(title: "Successfull", message: "your account registered successfully", preferredStyle: .alert)
+
+            successfulySignedUpAlert.addAction(UIAlertAction(title: "Ok", style: .default , handler: self.dissmissSignUpView(alert:)))
+            self.present(successfulySignedUpAlert, animated: true, completion: nil)
     }
     
     func dissmissSignUpView(alert: UIAlertAction) {
@@ -144,6 +172,7 @@ class finishSignUpVC: UIViewController {
     }
     
 }
+
 
 extension finishSignUpVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     

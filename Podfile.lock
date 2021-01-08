@@ -343,6 +343,7 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.11)
+  - SideMenu (6.5.0)
   - SwiftyStarRatingView (1.0.4)
 
 DEPENDENCIES:
@@ -352,6 +353,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Firestore
   - Firebase/Storage
+  - SideMenu
   - SwiftyStarRatingView
 
 SPEC REPOS:
@@ -377,6 +379,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - SideMenu
     - SwiftyStarRatingView
 
 SPEC CHECKSUMS:
@@ -401,8 +404,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftyStarRatingView: a2b0057700e0adeb8e7442c55d99cb53b531d2f4
 
-PODFILE CHECKSUM: ce38493cb978557fb4e4a85797ace571c3fdbb84
+PODFILE CHECKSUM: ba9e06bbbe17589c9b5631d4ac6304de4315f272
 
 COCOAPODS: 1.9.3

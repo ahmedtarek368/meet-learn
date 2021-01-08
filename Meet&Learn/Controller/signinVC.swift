@@ -19,6 +19,7 @@ class signinVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var signInView: UIView!
     
+    
     override func viewDidLayoutSubviews() {
         email.delegate = self
         password.delegate = self
@@ -26,16 +27,30 @@ class signinVC: UIViewController, UITextFieldDelegate {
         Style.styleTextField(password)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         if (Auth.auth().currentUser?.uid) != nil {
-            readUserData(userid: Auth.auth().currentUser!.uid, completion: {(user) in
+            Services.readUserData(userid: Auth.auth().currentUser!.uid, completion: {(user) in
                 let userType: String = self.checkUserType(user: user)
                 
                 if userType == "Learner"{
-                    self.transitionToLearnerHomeVC()
+                    self.transitionToLearnerHomeVC(user: user)
                 }else{
-                    self.transitionToTeacherHomeVC()
+                    self.transitionToTeacherHomeVC(user: user)
+                }
+            })
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if (Auth.auth().currentUser?.uid) != nil {
+            Services.readUserData(userid: Auth.auth().currentUser!.uid, completion: {(user) in
+                let userType: String = self.checkUserType(user: user)
+                //self.currentUser = user
+                if userType == "Learner"{
+                    self.transitionToLearnerHomeVC(user: user)
+                }else{
+                    self.transitionToTeacherHomeVC(user: user)
                 }
             })
         }
@@ -62,46 +77,37 @@ class signinVC: UIViewController, UITextFieldDelegate {
                     self.showError(message: error!.localizedDescription)
                 }else{
                     Style.stylePressedButton(Button: self.signinBtn)
-                    self.errorMessage.text = "Login Successful"
+                    self.showError(message: "Login Successful")
                     self.errorMessage.textColor = #colorLiteral(red: 0.3882352941, green: 0.7568627451, blue: 0.3137254902, alpha: 1)
-                    self.readUserData(userid: Auth.auth().currentUser!.uid, completion: {(user) in
+                    Services.readUserData(userid: Auth.auth().currentUser!.uid, completion: {(user) in
                         let userType: String = self.checkUserType(user: user)
                         
                         if userType == "Learner"{
-                            self.transitionToLearnerHomeVC()
+                            self.transitionToLearnerHomeVC(user: user)
                         }else{
-                            self.transitionToTeacherHomeVC()
+                            self.transitionToTeacherHomeVC(user: user)
                         }
                     })
                 }
             }
     }
     
-    func transitionToLearnerHomeVC() {
+    func transitionToLearnerHomeVC(user: User) {
         let learnerHomeVC = storyboard?.instantiateViewController(withIdentifier: "learnerHomeVC") as! learnerHomeVC
+        learnerHomeVC.initUserData(user: user)
         learnerHomeVC.modalPresentationStyle = .fullScreen
-        presentDetail(learnerHomeVC)
-    }
-    //teacherHomeVC
-    func transitionToTeacherHomeVC() {
-        let teacherHomeVC = storyboard?.instantiateViewController(withIdentifier: "teacherHomeVC") as! teacherHomeVC
-        teacherHomeVC.modalPresentationStyle = .fullScreen
-        presentDetail(teacherHomeVC)
+        present(learnerHomeVC, animated: false, completion: nil)
     }
     
-    func readUserData(userid: String,completion: @escaping (_ data : User) -> ()){
-        var user : User = User()
-        let db = Firestore.firestore()
-        db.collection("Users").document(userid).getDocument { (document, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                }else {
-                    let docData = document?.data()
-                    user = User(firstName: docData!["firstname"] as! String, lastName: docData!["lastname"] as! String, email: docData!["email"] as! String, phoneNumber: docData!["phone"] as! String, birthDate: docData!["birthdate"] as! String, userType: docData!["usertype"] as! String)
-                    completion(user)
-            }
-        }
+    func transitionToTeacherHomeVC(user: User) {
+        let teacherHomeVC = storyboard?.instantiateViewController(withIdentifier: "teacherHomeVC") as! teacherHomeVC
+        teacherHomeVC.initUserData(user: user)
+        teacherHomeVC.modalPresentationStyle = .fullScreen
+        //presentDetail(teacherHomeVC)
+        present(teacherHomeVC, animated: false, completion: nil)
     }
+    
+    
     func checkUserType(user: User) -> String{
         if user.userType == "Learner"{
             return "Learner"

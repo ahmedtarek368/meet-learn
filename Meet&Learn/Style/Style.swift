@@ -25,6 +25,21 @@ class Style {
         Button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
     }
 
+    static func styleRedNormalButton(Button: UIButton){
+        Button.layer.borderWidth = 1.3
+        Button.layer.borderColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        Button.layer.cornerRadius = Button.frame.height/2.1
+        Button.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        Button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        Button.setTitleColor(#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1), for: .normal)
+    }
+    
+    static func styleRedPressedButton(Button: UIButton){
+        Button.layer.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        Button.tintColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        Button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+    }
+    
     static func styleTextField(_ textfield:UITextField) {
         
         // Create the bottom line

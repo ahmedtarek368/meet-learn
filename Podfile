@@ -7,6 +7,7 @@ target 'Meet&Learn' do
 
   # Pods for Meet&Learn
   pod 'Alamofire', '~>4.5'
+  pod 'SideMenu'
   pod 'SwiftyStarRatingView'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
