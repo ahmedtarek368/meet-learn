@@ -68,13 +68,17 @@ extension learnerHomeVC: UITableViewDelegate, UITableViewDataSource{
         return courseCell
     }
     
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let teacherCourseDetailsTVC = self.storyboard?.instantiateViewController(identifier: "TCDTVC") as! teacherCourseDetailsTVC
-        teacherCourseDetailsTVC.modalPresentationStyle = .fullScreen
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let learnerCourseDetailsVC = self.storyboard?.instantiateViewController(identifier: "LCDVC") as! learnerCourseDetailsVC
+        learnerCourseDetailsVC.modalPresentationStyle = .fullScreen
         let course = courses[indexPath.row]
-        guard let user = currentUser else {return}
-        teacherCourseDetailsTVC.dataInit(user: user, course: course)
-        presentDetail(teacherCourseDetailsTVC)
-    }*/
+        var courseTeacher = User()
+        Services.readUserData(userid: course.teacherId) { (teacher) in
+            courseTeacher = teacher
+            guard let user = self.currentUser else {return}
+            learnerCourseDetailsVC.dataInit(user: user, course: course, courseTeacher: courseTeacher)
+            self.presentDetail(learnerCourseDetailsVC)
+        }
+    }
     
 }

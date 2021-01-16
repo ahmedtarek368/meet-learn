@@ -22,13 +22,15 @@
 		091F6966259E3DA700AE4462 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091F6965259E3DA600AE4462 /* Course.swift */; };
 		091F6969259F5CE500AE4462 /* courseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091F6968259F5CE500AE4462 /* courseCell.swift */; };
 		0921A07125A74CC60041FF0E /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0921A07025A74CC60041FF0E /* Services.swift */; };
-		0921A07625A763B20041FF0E /* teacherCourseDetailsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0921A07525A763B20041FF0E /* teacherCourseDetailsTVC.swift */; };
 		09426A0525922B45006FDA3C /* SideMenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09426A0425922B45006FDA3C /* SideMenuTVC.swift */; };
 		095FAC732582E94400723A74 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095FAC722582E94400723A74 /* UIViewControllerExt.swift */; };
 		0964612125A8DA2E00F5F8AF /* learnerSideMenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0964612025A8DA2E00F5F8AF /* learnerSideMenuTVC.swift */; };
+		0964612425AE48AB00F5F8AF /* learnerCourseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0964612325AE48AA00F5F8AF /* learnerCourseDetailsVC.swift */; };
 		09652E9F259658A000C09594 /* createCourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09652E9E259658A000C09594 /* createCourseVC.swift */; };
 		09652EA2259658C100C09594 /* finishCreateCourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09652EA1259658C100C09594 /* finishCreateCourseVC.swift */; };
 		097A9AF7257BF3FB006284A3 /* teacherHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097A9AF6257BF3FB006284A3 /* teacherHomeVC.swift */; };
+		0994F7B925B353F200469A02 /* teacherCourseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994F7B825B353F100469A02 /* teacherCourseDetailsVC.swift */; };
+		0994F7BC25B37B3100469A02 /* shadowedBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994F7BB25B37B3100469A02 /* shadowedBtn.swift */; };
 		09966B4A2575352D00A6E007 /* signupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09966B492575352C00A6E007 /* signupVC.swift */; };
 		09966B4D2575356D00A6E007 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09966B4C2575356D00A6E007 /* Style.swift */; };
 		09DEFE022577CD1C00FA0BBF /* learnerHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DEFE012577CD1C00FA0BBF /* learnerHomeVC.swift */; };
@@ -53,13 +55,15 @@
 		091F6965259E3DA600AE4462 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		091F6968259F5CE500AE4462 /* courseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseCell.swift; sourceTree = "<group>"; };
 		0921A07025A74CC60041FF0E /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Services.swift; path = "Meet&Learn/View/Services.swift"; sourceTree = SOURCE_ROOT; };
-		0921A07525A763B20041FF0E /* teacherCourseDetailsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teacherCourseDetailsTVC.swift; sourceTree = "<group>"; };
 		09426A0425922B45006FDA3C /* SideMenuTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTVC.swift; sourceTree = "<group>"; };
 		095FAC722582E94400723A74 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		0964612025A8DA2E00F5F8AF /* learnerSideMenuTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerSideMenuTVC.swift; sourceTree = "<group>"; };
+		0964612325AE48AA00F5F8AF /* learnerCourseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerCourseDetailsVC.swift; sourceTree = "<group>"; };
 		09652E9E259658A000C09594 /* createCourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createCourseVC.swift; sourceTree = "<group>"; };
 		09652EA1259658C100C09594 /* finishCreateCourseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finishCreateCourseVC.swift; sourceTree = "<group>"; };
 		097A9AF6257BF3FB006284A3 /* teacherHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teacherHomeVC.swift; sourceTree = "<group>"; };
+		0994F7B825B353F100469A02 /* teacherCourseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teacherCourseDetailsVC.swift; sourceTree = "<group>"; };
+		0994F7BB25B37B3100469A02 /* shadowedBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shadowedBtn.swift; sourceTree = "<group>"; };
 		09966B492575352C00A6E007 /* signupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupVC.swift; sourceTree = "<group>"; };
 		09966B4C2575356D00A6E007 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		09DEFE012577CD1C00FA0BBF /* learnerHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerHomeVC.swift; sourceTree = "<group>"; };
@@ -165,8 +169,9 @@
 				09083C2A2594E8D80056295B /* userProfileVC.swift */,
 				09652E9E259658A000C09594 /* createCourseVC.swift */,
 				09652EA1259658C100C09594 /* finishCreateCourseVC.swift */,
-				0921A07525A763B20041FF0E /* teacherCourseDetailsTVC.swift */,
 				0964612025A8DA2E00F5F8AF /* learnerSideMenuTVC.swift */,
+				0964612325AE48AA00F5F8AF /* learnerCourseDetailsVC.swift */,
+				0994F7B825B353F100469A02 /* teacherCourseDetailsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				091F6968259F5CE500AE4462 /* courseCell.swift */,
+				0994F7BB25B37B3100469A02 /* shadowedBtn.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,8 +338,10 @@
 				091D0D012571272800ABB70A /* AppDelegate.swift in Sources */,
 				0919E6CE25824C2D00CB63FA /* UIViewExt.swift in Sources */,
 				09083C2B2594E8D80056295B /* userProfileVC.swift in Sources */,
+				0994F7B925B353F200469A02 /* teacherCourseDetailsVC.swift in Sources */,
 				0908F80A2588D9790056A424 /* finishSignUpVC.swift in Sources */,
-				0921A07625A763B20041FF0E /* teacherCourseDetailsTVC.swift in Sources */,
+				0994F7BC25B37B3100469A02 /* shadowedBtn.swift in Sources */,
+				0964612425AE48AB00F5F8AF /* learnerCourseDetailsVC.swift in Sources */,
 				09426A0525922B45006FDA3C /* SideMenuTVC.swift in Sources */,
 				0921A07125A74CC60041FF0E /* Services.swift in Sources */,
 				09966B4A2575352D00A6E007 /* signupVC.swift in Sources */,

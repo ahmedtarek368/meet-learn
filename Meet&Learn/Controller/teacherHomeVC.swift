@@ -73,12 +73,12 @@ extension teacherHomeVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let teacherCourseDetailsTVC = self.storyboard?.instantiateViewController(identifier: "TCDTVC") as! teacherCourseDetailsTVC
-        teacherCourseDetailsTVC.modalPresentationStyle = .fullScreen
+        let teacherCourseDetailsVC = self.storyboard?.instantiateViewController(identifier: "TCDVC") as! teacherCourseDetailsVC
+        teacherCourseDetailsVC.modalPresentationStyle = .fullScreen
         let course = courses[indexPath.row]
         guard let user = currentUser else {return}
-        teacherCourseDetailsTVC.dataInit(user: user, course: course)
-        presentDetail(teacherCourseDetailsTVC)
+        teacherCourseDetailsVC.dataInit(user: user, course: course)
+        presentDetail(teacherCourseDetailsVC)
     }
     
 }

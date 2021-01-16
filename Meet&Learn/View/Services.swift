@@ -59,4 +59,42 @@ class Services{
         
     }
     
+    static func enrollUserToCourse(userId: String, courseId: String){
+        let db = Firestore.firestore()
+        
+        let coursesRef = db.collection("Courses").document("\(courseId)")
+        
+        coursesRef.updateData([
+            "usersEnrolled": FieldValue.arrayUnion(["\(userId)"])
+        ])
+    }
+    
+    static func unenrollUserFromoCourse(userId: String, courseId: String){
+        let db = Firestore.firestore()
+        
+        let coursesRef = db.collection("Courses").document("\(courseId)")
+        
+        coursesRef.updateData([
+            "usersEnrolled": FieldValue.arrayRemove(["\(userId)"])
+        ])
+    }
+    
+    static func addCourseToUserData(userId: String, courseId: String){
+        let db = Firestore.firestore()
+        let usersRef = db.collection("Users").document("\(userId)")
+        
+        usersRef.updateData([
+            "enrolledCourses": FieldValue.arrayUnion(["\(courseId)"])
+        ])
+    }
+    
+    static func removeCourseFromoUserData(userId: String, courseId: String){
+        let db = Firestore.firestore()
+        let usersRef = db.collection("Users").document("\(userId)")
+        
+        usersRef.updateData([
+            "enrolledCourses": FieldValue.arrayRemove(["\(courseId)"])
+        ])
+    }
+    
 }
